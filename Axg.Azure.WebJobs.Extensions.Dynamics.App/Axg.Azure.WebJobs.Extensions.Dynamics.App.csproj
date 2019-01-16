@@ -7,9 +7,6 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Axg.Azure.WebJobs.Extensions.Dynamics\Axg.Azure.WebJobs.Extensions.Dynamics.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

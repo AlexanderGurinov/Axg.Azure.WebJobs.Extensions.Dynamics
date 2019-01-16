@@ -1,20 +1,24 @@
+using System.Net.Http;
 using System.Threading.Tasks;
-using Dyrix;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace Axg.Azure.WebJobs.Extensions.Dynamics.App
 {
     public static class TestFunction
     {
+        public static HttpClient DynamicsClient;
+
         [FunctionName(nameof(TestFunction))]
         public static async Task Run(
-            [HttpTrigger(AuthorizationLevel.Function, nameof(HttpMethods.Post))] HttpRequest request,
-            [Dynamics] DynamicsClient dynamicsClient)
+            [HttpTrigger(AuthorizationLevel.Function, nameof(HttpMethods.Post))] HttpRequest request)
         {
             var json = await request.ReadAsStringAsync();
-            var (code, headers, content) = await dynamicsClient.PostAsync("WhoAmI()");
+
+            await DynamicsClient.PostAsync("",new ByteArrayContent(new byte[1]));
+            //var (code, headers, content) = await dynamicsClient.PostAsync("WhoAmI()");
         }
     }
 }

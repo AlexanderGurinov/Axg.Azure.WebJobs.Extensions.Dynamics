@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using Dyrix;
 using Microsoft.Azure.WebJobs;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Axg.Azure.WebJobs.Extensions.Dynamics
@@ -12,15 +13,15 @@ namespace Axg.Azure.WebJobs.Extensions.Dynamics
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
 
-           builder.AddExtension<DynamicsExtensionConfigProvider>()
-                //.ConfigureOptions<DynamicsClientOptions>((configuration, path, options) =>
-                //{
-                //    var d = 1;
-                //})
-                ;
+           //builder.AddExtension<DynamicsExtensionConfigProvider>()
+           //     //.ConfigureOptions<DynamicsClientOptions>((configuration, path, options) =>
+           //     //{
+           //     //    var d = 1;
+           //     //})
+           //     ;
 
 
-           // builder.Services.TryAddSingleton<DynamicsClient>();
+            var provider = builder.Services.BuildServiceProvider();
 
             return builder;
         }
