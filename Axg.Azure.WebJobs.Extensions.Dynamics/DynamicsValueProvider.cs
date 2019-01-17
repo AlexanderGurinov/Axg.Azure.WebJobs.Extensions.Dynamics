@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Dyrix;
 using Microsoft.Azure.WebJobs.Host.Bindings;
@@ -11,17 +10,11 @@ namespace Axg.Azure.WebJobs.Extensions.Dynamics
         private readonly DynamicsClient _dynamicsClient;
 
         public DynamicsValueProvider(DynamicsClient dynamicsClient) =>
-            _dynamicsClient = dynamicsClient; //?? throw new ArgumentNullException(nameof(dynamicsClient));
+            _dynamicsClient = dynamicsClient ?? throw new ArgumentNullException(nameof(dynamicsClient));
 
-        public Task<object> GetValueAsync()
-        {
-            return Task.FromResult<object>(_dynamicsClient ?? new DynamicsClient(new HttpClient()));
-        }
+        public Task<object> GetValueAsync() => Task.FromResult<object>(_dynamicsClient);
 
-        public string ToInvokeString()
-        {
-            return nameof(DynamicsClient);
-        }
+        public string ToInvokeString() => _dynamicsClient.ToString();
 
         public Type Type { get; } = typeof(DynamicsClient);
     }

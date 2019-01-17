@@ -7,25 +7,19 @@ namespace Axg.Azure.WebJobs.Extensions.Dynamics
 {
     internal sealed class DynamicsBinding : IBinding
     {
-        private readonly Task<IValueProvider> _valueProviderTask;
+        private readonly IValueProvider _valueProvider;
 
-        public DynamicsBinding(Task<IValueProvider> valueProviderTask) => 
-            _valueProviderTask = valueProviderTask ?? throw new ArgumentNullException(nameof(valueProviderTask));
+        public DynamicsBinding(IValueProvider valueProvider) =>
+            _valueProvider = valueProvider ?? throw new ArgumentNullException(nameof(valueProvider));
 
-        public Task<IValueProvider> BindAsync(object value, ValueBindingContext context)
-        {
-            return _valueProviderTask;
-        }
+        public Task<IValueProvider> BindAsync(object value, ValueBindingContext context) => Task.FromResult(_valueProvider);
 
-        public Task<IValueProvider> BindAsync(BindingContext context)
-        {
-            return _valueProviderTask;
-        }
+        public Task<IValueProvider> BindAsync(BindingContext context) => Task.FromResult(_valueProvider);
 
         public ParameterDescriptor ToParameterDescriptor() =>
             new ParameterDescriptor
             {
-                Name = nameof(Dynamics),
+                Name = string.Empty,//nameof(Dynamics),
                 DisplayHints = new ParameterDisplayHints
                 {
                     DefaultValue = string.Empty,
