@@ -36,42 +36,6 @@ namespace Axg.Azure.WebJobs.Extensions.Dynamics
 
             builder.AddExtension(extensionConfigProvider);
             return builder;
-
-            //     //.ConfigureOptions<DynamicsClientOptions>((configuration, path, options) =>
-            //     //{
-            //     //    var d = 1;
-            //     //})
-            //     ;
-
-            //var c = builder.Services.BuildServiceProvider()
-            //    .GetRequiredService<IConfiguration>()
-            //    ;
-
-            //var c1 = c["DynamicsClientOptions:Resource"];
-
-            //var d = Environment.GetEnvironmentVariable("DynamicsClientOptions:Resource");
-
-
-            //try
-            //{
-            //    var s = c.GetSection("DynamicsClientOptions");
-
-            //    var prov = builder.Services
-            //        .AddDynamicsClient(optionsBuilder => { optionsBuilder.AddConfiguration(s); })
-            //        .BuildServiceProvider();
-
-
-
-
-            //    DynamicsClientHolder.DynamicsClient = prov.GetService<IDynamicsClient>();
-
-
-            //}
-            //catch (Exception e)
-            //{
-
-            //}
-
         }
     }
 }
