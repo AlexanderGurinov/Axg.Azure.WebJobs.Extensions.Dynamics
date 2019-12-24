@@ -2,13 +2,13 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs.Host.Bindings;
 
-namespace Axg.Azure.WebJobs.Extensions.Dynamics
+namespace Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds
 {
-    internal sealed class DynamicsBindingProvider : IBindingProvider
+    internal sealed class CdsClientBindingProvider : IBindingProvider
     {
         private readonly IBinding _binding;
 
-        public DynamicsBindingProvider(IBinding binding) =>
+        public CdsClientBindingProvider(IBinding binding) =>
             _binding = binding ?? throw new ArgumentNullException(nameof(binding));
 
         public Task<IBinding> TryCreateAsync(BindingProviderContext context) => Task.FromResult(_binding);

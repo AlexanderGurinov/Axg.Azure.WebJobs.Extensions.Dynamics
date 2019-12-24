@@ -1,24 +1,24 @@
 ﻿using System;
-using Dyrix;
+using Gurinov.Microsoft.Cds;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Axg.Azure.WebJobs.Extensions.Dynamics
+namespace Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds
 {
-    internal static class DynamicsWebJobsBuilderExtensions
+    internal static class CdsClientWebJobsBuilderExtensions
     {
         public static IWebJobsBuilder AddDynamics(this IWebJobsBuilder builder)
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
 
-            var dynamicsClient = new ServiceCollection()
-                .AddDynamicsClient(options =>
+            var client = new ServiceCollection()
+                .AddCdsClient(options =>
                 {
                     var configuration = builder.Services
                         .BuildServiceProvider()
                         .GetRequiredService<IConfiguration>()
-                        .GetSection(nameof(DynamicsClientOptions));
+                        .GetSection(nameof(CdsClientOptions));
 
                     options.ApiVersion = configuration[nameof(options.ApiVersion)];
                     options.ClientId = configuration[nameof(options.ClientId)];
@@ -27,12 +27,12 @@ namespace Axg.Azure.WebJobs.Extensions.Dynamics
                     options.Resource = configuration[nameof(options.Resource)];
                 })
                 .BuildServiceProvider()
-                .GetRequiredService<IDynamicsClient>();
+                .GetRequiredService<ICdsClient>();
 
-            var valueProvider = new DynamicsValueProvider((DynamicsClient)dynamicsClient);
-            var binding = new DynamicsBinding(valueProvider);
-            var bindingProvider = new DynamicsBindingProvider(binding);
-            var extensionConfigProvider = new DynamicsExtensionConfigProvider(bindingProvider);
+            var valueProvider = new CdsClientValueProvider((CdsClient)client);
+            var binding = new CdsClientBinding(valueProvider);
+            var bindingProvider = new CdsClientBindingProvider(binding);
+            var extensionConfigProvider = new CdsClientExtensionConfigProvider(bindingProvider);
 
             builder.AddExtension(extensionConfigProvider);
             return builder;

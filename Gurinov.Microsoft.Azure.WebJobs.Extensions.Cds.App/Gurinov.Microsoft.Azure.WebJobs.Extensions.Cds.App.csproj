@@ -4,10 +4,11 @@
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.2" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Axg.Azure.WebJobs.Extensions.Dynamics\Axg.Azure.WebJobs.Extensions.Dynamics.csproj" />
+    <ProjectReference Include="..\Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds\Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

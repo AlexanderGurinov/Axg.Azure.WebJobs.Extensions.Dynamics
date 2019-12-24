@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs.Host.Bindings;
 using Microsoft.Azure.WebJobs.Host.Protocols;
 
-namespace Axg.Azure.WebJobs.Extensions.Dynamics
+namespace Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds
 {
-    internal sealed class DynamicsBinding : IBinding
+    internal sealed class CdsClientBinding : IBinding
     {
         private readonly IValueProvider _valueProvider;
 
-        public DynamicsBinding(IValueProvider valueProvider) =>
+        public CdsClientBinding(IValueProvider valueProvider) =>
             _valueProvider = valueProvider ?? throw new ArgumentNullException(nameof(valueProvider));
 
         public Task<IValueProvider> BindAsync(object value, ValueBindingContext context) => Task.FromResult(_valueProvider);
