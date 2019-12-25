@@ -7,5 +7,6 @@ namespace Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds
     [Binding]
     public sealed class CdsClientAttribute : Attribute
     {
+        //https://github.com/Azure/azure-webjobs-sdk/wiki/Creating-custom-input-and-output-bindings
     }
 }

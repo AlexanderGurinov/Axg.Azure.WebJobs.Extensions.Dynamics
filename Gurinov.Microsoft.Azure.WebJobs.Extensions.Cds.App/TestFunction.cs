@@ -1,20 +1,19 @@
 using System.Threading.Tasks;
 using Gurinov.Microsoft.Cds;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Extensions.Logging;
 
 namespace Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds.App
 {
     public static class TestFunction
     {
         [FunctionName(nameof(TestFunction))]
-        public static async Task Run(
-            [HttpTrigger(AuthorizationLevel.Function, nameof(HttpMethods.Post))] HttpRequest request,
-            [CdsClient] CdsClient client)
+        //public static async Task Run([TimerTrigger("0 */5 * * * *", RunOnStartup = true)]TimerInfo timer, [CdsClient] CdsClient client, ILogger logger)
+        public static void Run([TimerTrigger("0 */5 * * * *", RunOnStartup = true)]TimerInfo timer, ILogger logger)
         {
-            var json = await request.ReadAsStringAsync();
-            var (code, headers, content) = await client.GetAsync("WhoAmI()");
+            logger.LogInformation($"Timer trigger function executed. IsPastDue={timer.IsPastDue}");
+
+            //var (code, headers, content) = await client.GetAsync("WhoAmI()");
         }
     }
 }
