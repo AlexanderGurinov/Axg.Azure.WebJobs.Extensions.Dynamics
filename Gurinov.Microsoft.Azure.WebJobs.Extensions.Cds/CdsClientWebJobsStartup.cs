@@ -8,6 +8,6 @@ namespace Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds
 {
     internal sealed class CdsClientWebJobsStartup : IWebJobsStartup
     {
-        public void Configure(IWebJobsBuilder builder) => builder.AddDynamics();
+        public void Configure(IWebJobsBuilder builder) => builder.AddCdsClient();
     }
 }

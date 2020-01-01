@@ -4,7 +4,6 @@ using Microsoft.Azure.WebJobs.Host.Config;
 
 namespace Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds
 {
-    //[Extension(nameof(Dynamics))]
     internal sealed class CdsClientExtensionConfigProvider : IExtensionConfigProvider
     {
         private readonly IBindingProvider _bindingProvider;

@@ -8,7 +8,7 @@ namespace Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds
 {
     internal static class CdsClientWebJobsBuilderExtensions
     {
-        public static IWebJobsBuilder AddDynamics(this IWebJobsBuilder builder)
+        public static IWebJobsBuilder AddCdsClient(this IWebJobsBuilder builder)
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
 
