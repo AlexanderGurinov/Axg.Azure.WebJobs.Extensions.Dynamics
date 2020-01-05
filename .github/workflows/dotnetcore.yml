@@ -1,0 +1,19 @@
+name: .NET Core
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup
+      uses: actions/setup-dotnet@v1
+    - name: Build
+      run: dotnet build --configuration Release
+    - name: Pack
+      run: dotnet pack --configuration Release
+    - name: Push
+      run: dotnet nuget push .\Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds\bin\Release\*.nupkg --api-key ${{ secrets.NugetApiKey }} --source https://api.nuget.org/v3/index.json
