@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dyrix" Version="3.1.2" />
+    <PackageReference Include="Dyrix" Version="3.1.5" />
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.14" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="*">
       <PrivateAssets>all</PrivateAssets>

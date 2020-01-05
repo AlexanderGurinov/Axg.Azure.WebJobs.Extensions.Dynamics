@@ -8,12 +8,10 @@ namespace Gurinov.Microsoft.Azure.WebJobs.Extensions.Cds.App
     public static class TestFunction
     {
         [FunctionName(nameof(TestFunction))]
-        public static async Task Run([TimerTrigger("0 */5 * * * *", RunOnStartup = true)]TimerInfo timer, [CdsClient] CdsClient client, ILogger logger)
+        public static async Task Run([TimerTrigger("0 */5 * * * *", RunOnStartup = true)]TimerInfo timer, [CdsClient] ICdsClient client, ILogger logger)
         {
             logger.LogInformation($"Timer trigger function executed. IsPastDue={timer.IsPastDue}");
-
-            //var (code, headers, content) = await client.GetAsync("WhoAmI()");
-            await Task.CompletedTask;
+            var (code, headers, content) = await client.GetAsync("WhoAmI()");
         }
     }
 }
